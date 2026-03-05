@@ -1,0 +1,16 @@
+{
+  "name": "nanoverseai-skills",
+  "version": "1.0.0",
+  "description": "",
+  "main": "commitlint.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefan Neidig <s.neidig@nanogiants.de> (https://nanogiants.de/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^20.4.3",
+    "@commitlint/config-conventional": "^20.4.3",
+    "lefthook": "^2.1.2"
+  }
+}
