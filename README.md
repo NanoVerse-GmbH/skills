@@ -21,8 +21,8 @@ Einzelnen Skill per `git sparse-checkout` holen (empfohlen – holt nur den gew�
 
 ```bash
 # Temporäres Verzeichnis anlegen
-git clone --no-checkout --depth=1 git@github.com:nanogiants/nanoverseai-skills.git /tmp/nanogiants-skills
-cd /tmp/nanogiants-skills
+git clone --no-checkout --depth=1 git@github.com:NanoVerse-GmbH/skills.git /tmp/nanoverse-skills
+cd /tmp/nanoverse-skills
 
 # Nur den gewünschten Skill auschecken
 git sparse-checkout init --cone
@@ -110,7 +110,7 @@ Danach folgt der eigentliche Skill-Inhalt in Markdown: Anweisungen, Workflows, B
 1. Feature-Branch anlegen: `git checkout -b skill/dein-skill-name`
 2. Skill unter `skills/dein-skill-name/` anlegen
 3. Lokal testen (manuell oder per Evals)
-4. Pull Request gegen `main` öffnen
+4. Pull Request gegen `master` öffnen
 5. Review durch ein Teammitglied
 6. Nach Approval: Merge
 
@@ -127,13 +127,14 @@ Alle Skills folgen dem Workflow: **Idea → Epic → Stories → Testplan → Im
 | **nv-create-testplans** | `skills/nv-create-testplans/` | Erzeugt aus einer fertigen User Story eine deterministische, automatisierbare Testfall-Suite (Unit, Integration, E2E, Security, Performance u.a.) – mit Risk Classification, Coverage Map, Challenger Review und direkter Anlage als Tasks in Jira. |
 | **nv-story-to-implementation** | `skills/nv-story-to-implementation/` | Erstellt aus einer fertigen User Story einen vollständigen, AI-nativen Implementierungsplan mit Work Breakdown, Traceability auf ACs und TCs, Feature Flag- und Rollback-Strategy. Legt den Plan als `tasks/IMPL_<STORYKEY>.md` im Repo ab und synchronisiert ihn als Tasks in Jira. |
 | **nv-story-to-optimization** | `skills/nv-story-to-optimization/` | Greift nach der Implementierung: führt ein strukturiertes Feedback-Interview durch, setzt Oberflächen- und UX-Optimierungen um und dokumentiert Findings + Entscheidungen als Jira-Kommentar. Ergänzt den `story-to-implementation`-Workflow. |
+| **nv-skill-installer** | `skills/nv-skill-installer/` | Installiert und aktualisiert NanoGiants AI Skills vom privaten GitHub-Repo `NanoVerse-GmbH/skills` auf die lokale Maschine. Unterstützt opencode und Claude Code, global und project-local, mit automatischer Umgebungserkennung, Auth-Check und Update-Detection. |
 
 ---
 
 ## Verzeichnisstruktur
 
 ```
-nanoverseai-skills/
+skills/
 ├── skills/                  # Alle Skills
 │   └── <skill-name>/
 │       ├── SKILL.md         # Skill-Definition (Pflicht)
