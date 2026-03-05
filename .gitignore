@@ -11,3 +11,6 @@
 .qraft-github-token/
 
 .opencode
+
+# macOS
+.DS_Store
