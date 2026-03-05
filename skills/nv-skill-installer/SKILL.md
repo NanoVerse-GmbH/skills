@@ -1,7 +1,7 @@
 ---
 name: nv-skill-installer
 description: >
-  Installs or updates NanoGiants AI skills from the private GitHub repository nanogiants/nanoverseai-skills
+  Installs or updates NanoGiants AI skills from the private GitHub repository NanoVerse-GmbH/skills
   onto the local machine. Use this skill whenever the user wants to install, update, add, or sync NanoGiants
   skills — also triggered by phrases like "installier mir die NanoGiants Skills", "install nv skills",
   "welche NanoGiants Skills gibt es", "update my nv skills", "hol mir den nv-idea-to-epic skill",
@@ -11,13 +11,14 @@ description: >
 
 # NanoGiants Skill Installer
 
-Installs and updates skills from the private `nanogiants/nanoverseai-skills` repository.
+Installs and updates skills from the private `NanoVerse-GmbH/skills` repository.
 
 **Hardcoded constants — never ask the user for these:**
-- **Repo**: `nanogiants/nanoverseai-skills` (SSH: `git@github.com:nanogiants/nanoverseai-skills.git`)
-- **Branch**: `main`
+- **Repo HTTPS**: `https://github.com/NanoVerse-GmbH/skills.git`
+- **Repo SSH**: `git@github.com:NanoVerse-GmbH/skills.git`
+- **Branch**: `master`
 - **Skill path prefix in repo**: `skills/<skill-name>/`
-- **README URL**: `https://raw.githubusercontent.com/nanogiants/nanoverseai-skills/main/README.md`
+- **README URL**: `https://raw.githubusercontent.com/NanoVerse-GmbH/skills/master/README.md`
 
 ---
 
@@ -73,14 +74,14 @@ Read the `README.md` from the repo to get the authoritative list of skills. This
 ### Fetch via gh CLI (preferred)
 
 ```bash
-gh api repos/nanogiants/nanoverseai-skills/contents/README.md \
+gh api repos/NanoVerse-GmbH/skills/contents/README.md \
   --jq '.content' | base64 --decode
 ```
 
 ### Fetch via curl + SSH (fallback)
 
 ```bash
-curl -s https://raw.githubusercontent.com/nanogiants/nanoverseai-skills/main/README.md
+curl -s https://raw.githubusercontent.com/NanoVerse-GmbH/skills/master/README.md
 ```
 
 > If both fail → proceed to Phase 3 (GitHub auth check) first, then retry.
@@ -182,11 +183,11 @@ mkdir -p "$TMPDIR"
 ```bash
 cd "$TMPDIR"
 git init
-git remote add origin https://github.com/nanogiants/nanoverseai-skills.git
+git remote add origin https://github.com/NanoVerse-GmbH/skills.git
 gh auth setup-git  # ensures git uses gh credentials
 git sparse-checkout init --cone
 git sparse-checkout set skills/<skill-name>
-git pull origin main --depth=1
+git pull origin master --depth=1
 ```
 
 ### Download via SSH (fallback)
@@ -194,10 +195,10 @@ git pull origin main --depth=1
 ```bash
 cd "$TMPDIR"
 git init
-git remote add origin git@github.com:nanogiants/nanoverseai-skills.git
+git remote add origin git@github.com:NanoVerse-GmbH/skills.git
 git sparse-checkout init --cone
 git sparse-checkout set skills/<skill-name>
-git pull origin main --depth=1
+git pull origin master --depth=1
 ```
 
 After pull, skill files are at: `$TMPDIR/skills/<skill-name>/`
@@ -275,7 +276,7 @@ Skipped (already up to date):
 | Situation | Action |
 |-----------|--------|
 | README fetch fails | Fall back to SSH fetch; if both fail → run Phase 3 auth check |
-| Repo not accessible after auth | Show clear error: "Cannot access nanogiants/nanoverseai-skills — check your GitHub account has access to this private repo" |
+| Repo not accessible after auth | Show clear error: "Cannot access NanoVerse-GmbH/skills — check your GitHub account has access to this private repo" |
 | Skill directory missing in repo | Warn: "Skill `<name>` not found in repo. It may have been renamed or removed." |
 | Destination directory not writable | Show error with the exact path and suggest `sudo` or checking permissions |
 | git not installed | "git is required. Install it with `brew install git` (macOS) or `sudo apt install git` (Linux)" |
