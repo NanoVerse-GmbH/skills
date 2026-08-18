@@ -1,0 +1,44 @@
+{
+  "skill_name": "nv-technical-acceptance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Führe die technische Abnahme für SCRUM-201 aus. Eine fachliche PASS-Übergabe liegt vor. Lint, Typecheck, Tests und Build sind grün; die Änderung betrifft nur eine UI-Ansicht ohne Persistenz, externe Integration oder KI-Verhalten.",
+      "expected_output": "Eine technische PASS-Entscheidung mit konkreten Nachweisen sowie begründet nicht anwendbaren Kriterien für Datenzugriff, Integrationen und KI.",
+      "assertions": [
+        {
+          "name": "functional_handover_is_context_only",
+          "description": "Die fachliche Übergabe wird nicht erneut fachlich bewertet.",
+          "type": "contains",
+          "value": "nur Kontext, nicht erneut bewertet"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Prüfe SCRUM-202 technisch: Eine neue Supabase-Tabelle ist implementiert, aber es gibt keine Evidenz für RLS-Policies oder Berechtigungstests. Der restliche Build ist grün.",
+      "expected_output": "Eine FAIL- oder BLOCKIERT-Entscheidung mit klar benannter fehlender Sicherheits- und Zugriffsevidenz.",
+      "assertions": [
+        {
+          "name": "security_gap_blocks_pass",
+          "description": "Unbelegte Zugriffskontrolle führt nicht zu PASS.",
+          "type": "llm_judge",
+          "criteria": "The response does not issue a PASS because evidence for required data access control and RLS is absent."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Nimm SCRUM-203 technisch ab. Es erweitert eine Jira-Data-Center-Aktion, die über eine Browser-Extension und Kunden-VPN erreichbar sein muss. Es gibt Tests für den Erfolgspfad, aber keine Nachweise für Timeout und Verbindungsabbruch.",
+      "expected_output": "Eine FAIL- oder BLOCKIERT-Entscheidung, die die fehlende VPN-/Abbruchbehandlung als technische Lücke dokumentiert und keine fachliche Abnahme wiederholt.",
+      "assertions": [
+        {
+          "name": "vpn_reliability_evidence_required",
+          "description": "Die Bewertung adressiert Timeouts und Verbindungsabbrüche im VPN-Extension-Szenario.",
+          "type": "contains",
+          "value": "Verbindungsabbrüche"
+        }
+      ]
+    }
+  ]
+}
