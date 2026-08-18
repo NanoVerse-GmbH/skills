@@ -4,7 +4,7 @@ description: Bereitet bestehende Architekturvorgaben für Lovable auf. Verwende 
 context: fork
 metadata:
   author: nanoverse
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # NV Lovable Architecture
@@ -16,7 +16,7 @@ metadata:
 - `docs/lovable-project-knowledge.md`
 - `docs/lovable-workspace-knowledge.md`
 
-Die Dateien sind eine **Aufteilung und Lovable-taugliche Verdichtung** der bestehenden Vorgaben. Sie sind keine Gelegenheit, Architektur neu zu entwerfen, zusätzliche Regeln zu recherchieren oder fehlende Informationen zu erraten.
+Die Dateien sind eine **verlustfreie Aufteilung** der bestehenden Vorgaben. Sie sind keine Gelegenheit, Architektur neu zu entwerfen, zusätzliche Regeln zu recherchieren, fehlende Informationen zu erraten, Regeln zu kürzen oder Regeln umzuformulieren.
 
 ## Auslöser
 
@@ -73,9 +73,11 @@ Diese Zusammenfassung ist nur ein Orientierungswert. Die bei der Ausführung gel
 ### 1. Quelle extrahieren
 
 - Lies die Architekturquelle vollständig.
-- Extrahiere ausschließlich explizite Regeln, Entscheidungen, Verbote, Ausnahmen und Fakten.
-- Erhalte die Bedeutung von harten Regeln wie „niemals“, „ausschließlich“ und „nur“ unverändert.
-- Behandle Codebeispiele nur als Beleg für eine Regel. Übernimm sie nur, wenn sie für Lovable notwendig und innerhalb des Zeichenlimits sinnvoll sind.
+- Extrahiere jede explizite Regel, Entscheidung, jedes Verbot, jede Ausnahme, jeden Projektfakt und jedes Codebeispiel als **atomare Quelleinheit**.
+- Behandle einen einzelnen Listenpunkt, einen eigenständigen Absatz, eine eigenständige Regelzeile und jeden Codeblock als atomare Quelleinheit.
+- Erhalte jede atomare Quelleinheit wortgleich: Ändere weder Wörter, Satzzeichen, Reihenfolge innerhalb der Einheit noch Beispiele.
+- Übernimm jedes Codebeispiel vollständig und unverändert zusammen mit der zugehörigen Regel.
+- Fasse Quelleinheiten niemals zusammen, kürze sie niemals und entferne keine vermeintlichen Wiederholungen. Auch ähnlich wirkende, aber unterschiedlich formulierte Quelleinheiten bleiben erhalten.
 
 ### 2. Regeln klassifizieren
 
@@ -104,14 +106,12 @@ Ordne hier alles ein, das dieses konkrete Projekt beschreibt oder dessen konkret
 
 Wenn eine Regel theoretisch allgemein klingt, aber konkrete Projektpfade, Domänen oder Implementierungen nennt, gehört sie in Project Knowledge.
 
-### 3. Lovable-tauglich formulieren
+### 3. Zieldateien strukturieren, ohne Quellen zu verändern
 
 - Schreibe auf Deutsch, sofern die Quelle keine andere Sprache vorgibt.
-- Formuliere kurze, eindeutige Anweisungen in Imperativform.
-- Bewahre die Aussage jeder Quellregel. Vereinfache nur Sprache und Struktur, nicht die fachliche Bedeutung.
-- Gruppiere Regeln unter knappen Überschriften.
-- Entferne Wiederholungen nur, wenn dabei keine Einschränkung oder Ausnahme verloren geht.
-- Übernimm keine Begründungen, Beispiele oder Implementierungsdetails, die keine handlungsrelevante Lovable-Anweisung enthalten.
+- Neue Dateititel, Abschnittsüberschriften und ein kurzer Herkunftshinweis sind erlaubt.
+- Ändere keine atomare Quelleinheit. Formuliere keine Regel Lovable-tauglich um, vereinfache keine Sprache und entferne keine Begründung, kein Beispiel und kein Implementierungsdetail aus der Quelle.
+- Gruppiere Quelleinheiten nur unter neuen Überschriften. Bewahre den Originaltext jeder Einheit unverändert.
 - Formuliere keine neuen „Best Practices“, keine Empfehlungen aus eigener Erfahrung und keine Mutmaßungen über Lovable.
 
 ## Zieldateien
@@ -132,8 +132,8 @@ Struktur:
 - [Knappe, explizit aus der Quelle abgeleitete Regel]
 ```
 
-- Nimm nur Regeln auf, die gemäß aktueller Lovable-Dokumentation für Workspace Knowledge geeignet sind.
-- Nenne weder konkrete Projektpfade noch projektinterne Sonderfälle.
+- Nimm nur Quelleinheiten auf, die gemäß aktueller Lovable-Dokumentation für Workspace Knowledge geeignet sind.
+- Nenne keine konkreten Projektpfade oder projektinternen Sonderfälle, außer sie gehören zu einer Quelleinheit, die unverändert übernommen werden muss. Ordne diese Quelleinheit stattdessen Project Knowledge zu.
 - Falls die Quelle keine workspaceweit wiederverwendbaren Regeln enthält, schreibe nur den Titel und einen knappen Hinweis, dass die Quelle keine ableitbaren Workspace-Regeln enthält.
 
 ### `docs/lovable-project-knowledge.md`
@@ -150,16 +150,28 @@ Struktur:
 - [Knappe, explizit aus der Quelle abgeleitete Regel oder Projektfakt]
 ```
 
-- Nimm projektspezifische Architektur, Datenzugriff, Sicherheitsgrenzen, Integrationsausnahmen und Domänenregeln auf, sofern sie in der Quelle stehen.
+- Nimm projektspezifische Architektur, Datenzugriff, Sicherheitsgrenzen, Integrationsausnahmen und Domänenregeln als unveränderte Quelleinheiten auf, sofern sie in der Quelle stehen.
 - Erfinde keine Projektübersicht, Personas, Datenbanktabellen oder Referenzen, wenn die Quelle diese nicht ausdrücklich enthält.
 
 ## Zeichenlimit und Vollständigkeit
 
 - Prüfe vor dem Schreiben die aktuell dokumentierten Zeichenlimits für beide Lovable-Felder.
+- Ermittle die Zeichenzahl jeder Zieldatei deterministisch mit einem lokalen Zeichen-Zähler, beispielsweise `node -e "const fs=require('fs'); console.log([...fs.readFileSync(process.argv[1],'utf8')].length)" <datei>`.
+- Vergleiche jede ermittelte Zeichenzahl mit dem aktuell auf der offiziellen Lovable-Seite dokumentierten Limit.
 - Halte jede Zieldatei innerhalb des jeweiligen Limits.
-- Kürze zuerst Wiederholungen und nicht handlungsrelevante Begründungen.
-- Streiche niemals eine harte Sicherheits-, Datenzugriffs- oder Architekturregel, nur um prägnanter zu wirken.
-- Falls die vollständige, verlustfreie Aufteilung nicht in die aktuellen Limits passt, schreibe keine unvollständigen Dateien. Erkläre dem User, welche Quellabschnitte nicht verlustfrei untergebracht werden können, und frage nach einer Priorisierung.
+- Kürze, paraphrasiere oder streiche niemals Quelleinheiten, um ein Zeichenlimit einzuhalten.
+- Falls die vollständige, verlustfreie Aufteilung nicht in die aktuellen Limits passt, schreibe oder überschreibe keine Zieldateien. Erkläre dem User, welche Quelleinheiten nicht verlustfrei untergebracht werden können, und frage nach einer Priorisierung.
+
+## Deterministische Vollständigkeitsprüfung
+
+Führe nach dem Erstellen und vor dem Abschluss diese Prüfung durch:
+
+1. Zähle alle atomaren Quelleinheiten der Architekturquelle.
+2. Erstelle ein Mapping `Quelleinheit → Workspace Knowledge` oder `Quelleinheit → Project Knowledge`.
+3. Prüfe jede Quelleinheit per exakter Textsuche in der ihr zugeordneten Zieldatei.
+4. Prüfe zusätzlich, dass jeder Quell-Codeblock vollständig und unverändert in der zugeordneten Zieldatei vorkommt.
+5. Schließe nur ab, wenn die Anzahl der gefundenen Quelleinheiten der Anzahl aller Quelleinheiten entspricht und jede Zeichenlimit-Prüfung bestanden ist.
+6. Falls eine Quelleinheit fehlt, gekürzt, zusammengeführt oder umformuliert ist, korrigiere die Zieldateien vor dem Abschluss. Berichte keinen Erfolg mit offenen Abweichungen.
 
 ## Abschluss
 
@@ -168,7 +180,10 @@ Berichte nach dem Schreiben knapp:
 1. welche Quelle verwendet wurde,
 2. dass die aktuelle Lovable-Dokumentation geprüft wurde,
 3. welche Dateien geschrieben wurden,
-4. die Zeichenzahl jeder Zieldatei im Verhältnis zum aktuell gültigen Limit,
-5. dass keine neuen Architekturentscheidungen erfunden wurden.
+4. die deterministisch ermittelte Zeichenzahl jeder Zieldatei im Verhältnis zum aktuell gültigen Limit,
+5. die Anzahl aller atomaren Quelleinheiten und die Anzahl wortgleich übernommener Quelleinheiten,
+6. die Anzahl vollständig und unverändert übernommener Codebeispiele,
+7. das Ergebnis der deterministischen Vollständigkeitsprüfung,
+8. dass keine neuen Architekturentscheidungen erfunden wurden.
 
 Nenne offene Zuordnungs- oder Inhaltsfragen ausdrücklich, statt sie selbst zu entscheiden.
