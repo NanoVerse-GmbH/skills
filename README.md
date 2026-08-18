@@ -129,6 +129,8 @@ Alle Skills folgen dem Workflow: **Idea → Epic → Stories → Testplan → Im
 | **nv-story-to-optimization** | `skills/nv-story-to-optimization/` | Greift nach der Implementierung: führt ein strukturiertes Feedback-Interview durch, setzt Oberflächen- und UX-Optimierungen um und dokumentiert Findings + Entscheidungen als Jira-Kommentar. Ergänzt den `story-to-implementation`-Workflow. |
 | **nv-skill-installer** | `skills/nv-skill-installer/` | Installiert und aktualisiert NanoGiants AI Skills vom privaten GitHub-Repo `NanoVerse-GmbH/skills` auf die lokale Maschine. Unterstützt opencode und Claude Code, global und project-local, mit automatischer Umgebungserkennung, Auth-Check und Update-Detection. |
 | **nv-skill-updater** | `skills/nv-skill-updater/` | Pusht einen lokal installierten NanoGiants Skill zurück ins private GitHub-Repo `NanoVerse-GmbH/skills`. Unterstützt neue Skill-Beiträge und Updates bestehender Skills – mit Diff-Vorschau, automatischer README-Aktualisierung bei neuen Skills und Auth-Check. |
+| **nv-functional-acceptance** | `skills/nv-functional-acceptance/` | Führt die NanoVerse-fachliche Abnahme anhand der eingebetteten funktionalen Definition of Done durch und erstellt eine formale Übergabe für die technische Abnahme. |
+| **nv-technical-acceptance** | `skills/nv-technical-acceptance/` | Führt die NanoVerse-technische Abnahme anhand der eingebetteten technischen Definition of Done durch und liefert eine klare PASS-, FAIL- oder BLOCKIERT-Entscheidung mit Evidenz. |
 
 ---
 
