@@ -1,0 +1,44 @@
+{
+  "skill_name": "nv-functional-acceptance",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Nimm SCRUM-123 fachlich ab. Alle ACs sind per Demo belegt, die neue Hilfe und Release Notes sind vorhanden. Es ist eine neue Integrationsfunktion mit einem Handover-Dokument.",
+      "expected_output": "Eine fachliche PASS-Entscheidung mit kriterienspezifischer Evidenz und formaler Übergabe an die technische Abnahme.",
+      "assertions": [
+        {
+          "name": "formal_technical_handover",
+          "description": "Das Ergebnis enthält einen expliziten Abschnitt für die technische Übergabe.",
+          "type": "contains",
+          "value": "Übergabe an die technische Abnahme"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Prüfe den fachlichen DoD für den kleinen Bugfix SCRUM-124. Kein neues Nutzerfeature, keine neue Hilfe und keine Releasenotes. Das Jira-Ticket und die AC-Evidenz liegen vor.",
+      "expected_output": "Eine risikobasierte fachliche Bewertung, die nicht anwendbare Kriterien begründet und keinen technischen Test- oder Buildcheck vornimmt.",
+      "assertions": [
+        {
+          "name": "non_applicable_reasoning",
+          "description": "Nicht anwendbare Kriterien werden nur mit Begründung akzeptiert.",
+          "type": "contains",
+          "value": "nicht anwendbar"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Führe die funktionale Abnahme für SCRUM-125 durch. Die UI ist demonstriert, aber es gibt keine Evidenz, dass die Fehlerfälle aus den ACs geprüft wurden.",
+      "expected_output": "Eine FAIL- oder BLOCKIERT-Entscheidung, welche die fehlende fachliche Evidenz klar nennt und trotzdem eine technische Übergabe strukturiert.",
+      "assertions": [
+        {
+          "name": "evidence_gap_is_not_passed",
+          "description": "Fehlende Evidenz wird nicht als PASS ausgegeben.",
+          "type": "llm_judge",
+          "criteria": "The response does not mark the acceptance PASS when evidence for required functional error cases is missing."
+        }
+      ]
+    }
+  ]
+}
