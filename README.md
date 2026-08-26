@@ -132,6 +132,7 @@ Alle Skills folgen dem Workflow: **Idea → Epic → Stories → Testplan → Im
 | **nv-functional-acceptance** | `skills/nv-functional-acceptance/` | Führt die NanoVerse-fachliche Abnahme anhand der eingebetteten funktionalen Definition of Done durch und erstellt eine formale Übergabe für die technische Abnahme. |
 | **nv-technical-acceptance** | `skills/nv-technical-acceptance/` | Führt die NanoVerse-technische Abnahme anhand der eingebetteten technischen Definition of Done durch und liefert eine klare PASS-, FAIL- oder BLOCKIERT-Entscheidung mit Evidenz. |
 | **nv-lovable-architecture** | `skills/nv-lovable-architecture/` | Bereitet bestehende Architekturvorgaben für Lovable auf und teilt sie in Project Knowledge sowie Workspace Knowledge auf, ohne neue Architekturregeln zu erfinden. |
+| **interview-me** | `skills/interview-me/` | Führt ein strukturiertes, Experten-geleitetes Interview durch und verwandelt Wissen, Ideen, Entscheidungen oder Projekt-Kontext in ein fundiertes Markdown-Dokument – z. B. PRD, Konzept, Briefing, Spezifikation oder Decision Record. |
 
 ---
 
