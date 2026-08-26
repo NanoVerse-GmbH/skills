@@ -23,23 +23,24 @@
 | Kriterium | Status | Evidenz oder Begründung |
 |---|---|---|
 | A · Automatisierte Qualitätsgates | {{status}} | {{evidence_or_reason}} |
-| B · Technische Verifikation | {{status}} | {{evidence_or_reason}} |
-| C · Integration & Systemverträge | {{status}} | {{evidence_or_reason}} |
-| D · Datensicherheit & Zugriff | {{status}} | {{evidence_or_reason}} |
-| E · Runtime-Betrieb | {{status}} | {{evidence_or_reason}} |
-| F · Fehlerverhalten & Recovery | {{status}} | {{evidence_or_reason}} |
+| B · Angemessene technische Verifikation | {{status}} | {{evidence_or_reason}} |
+| C · Technische Integration & Systemverträge | {{status}} | {{evidence_or_reason}} |
+| D · Datensicherheit & Zugriffskontrolle | {{status}} | {{evidence_or_reason}} |
+| E · Robuster Runtime-Betrieb | {{status}} | {{evidence_or_reason}} |
+| F · Fehlerverhalten & Wiederherstellung | {{status}} | {{evidence_or_reason}} |
 | G · Chat- und Aktionsverträge | {{status}} | {{evidence_or_reason}} |
-| H · Prompt, Kontext & LLM | {{status}} | {{evidence_or_reason}} |
-| I · Rollout & Konfiguration | {{status}} | {{evidence_or_reason}} |
-| J · Parität & Kompatibilität | {{status}} | {{evidence_or_reason}} |
+| H · Prompt-, Kontext- & LLM-Qualität | {{status}} | {{evidence_or_reason}} |
+| I · Kontrollierte Einführung & Konfiguration | {{status}} | {{evidence_or_reason}} |
+| J · Parität & Schnittstellenkompatibilität | {{status}} | {{evidence_or_reason}} |
 | K · Modell-, Tenant- & Skill-Policy | {{status}} | {{evidence_or_reason}} |
 | L · Evals & Telemetrie | {{status}} | {{evidence_or_reason}} |
-| M · Dependencies & Performance | {{status}} | {{evidence_or_reason}} |
-| N · Lokalisierung | {{status}} | {{evidence_or_reason}} |
-| O · Jira DC & VPN | {{status}} | {{evidence_or_reason}} |
+| M · Dependencies, Performance & Auslieferbarkeit | {{status}} | {{evidence_or_reason}} |
+| N · Sprache & Lokalisierung (technisch) | {{status}} | {{evidence_or_reason}} |
+| O · Jira Data Center & VPN-Kompatibilität | {{status}} | {{evidence_or_reason}} |
 
 Zulässige Kriterienstatus: `erfüllt`, `offen`, `blockiert`, `nicht anwendbar`.
-`Nicht anwendbar` setzt eine konkrete Scope-Begründung voraus.
+Jede erfüllte Bewertung benötigt konkrete Evidenz; Prompt-Angaben allein sind
+keine Evidenz. `Nicht anwendbar` setzt eine konkrete Scope-Begründung voraus.
 
 ## Risiken, Abweichungen und verbleibende Blocker
 
