@@ -1,8 +1,8 @@
-# Fachliche Abnahme & technische Übergabe – {{ticket_key}} {{feature_title}}
+# Fachliche Abnahme – {{ticket_key}} {{feature_title}}
 
 ## Abnahmeentscheidung
 
-- **Status:** {{PASS | FAIL | BLOCKIERT}}
+- **Status:** {{Bestanden | Nicht bestanden | Nicht prüfbar}}
 - **Abgenommen durch:** {{name_or_role}}
 - **Datum:** {{date}}
 - **Scope:** {{feature_scope}}
@@ -33,17 +33,6 @@ Für `nicht anwendbar` ist eine konkrete Begründung erforderlich.
 ## Bekannte Einschränkungen und offene Punkte
 
 {{known_limitations_and_open_points}}
-
-## Übergabe an die technische Abnahme
-
-Die fachliche Entscheidung bewertet keine technische Qualität. Die technische
-Abnahme soll die folgenden Hinweise als Kontext verwenden, ohne die fachliche
-Abnahme erneut durchzuführen:
-
-- **Fachlich akzeptierte Abweichungen:** {{accepted_deviations}}
-- **Technische Beobachtungen ohne fachliches Urteil:** {{technical_observations}}
-- **Abhängigkeiten / benötigte Zugänge:** {{dependencies_and_access}}
-- **Zu prüfende technische Risiken:** {{technical_risks}}
 
 ## Abschluss
 

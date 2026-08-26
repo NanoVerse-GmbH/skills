@@ -4,13 +4,13 @@
     {
       "id": 1,
       "prompt": "Nimm SCRUM-123 fachlich ab. Alle ACs sind per Demo belegt, die neue Hilfe und Release Notes sind vorhanden. Es ist eine neue Integrationsfunktion mit einem Handover-Dokument.",
-      "expected_output": "Eine fachliche PASS-Entscheidung mit kriterienspezifischer Evidenz und formaler Übergabe an die technische Abnahme.",
+      "expected_output": "Eine fachliche PASS-Entscheidung mit kriterienspezifischer Evidenz als Chat-Antwort, ohne Datei oder Jira-Änderung.",
       "assertions": [
         {
-          "name": "formal_technical_handover",
-          "description": "Das Ergebnis enthält einen expliziten Abschnitt für die technische Übergabe.",
+          "name": "evidence_based_chat_result",
+          "description": "Das Ergebnis enthält konkrete Evidenz und folgt der Standardausgabe als Chat-Antwort.",
           "type": "contains",
-          "value": "Übergabe an die technische Abnahme"
+          "value": "Evidenz zu Akzeptanzkriterien"
         }
       ]
     },
@@ -30,7 +30,7 @@
     {
       "id": 3,
       "prompt": "Führe die funktionale Abnahme für SCRUM-125 durch. Die UI ist demonstriert, aber es gibt keine Evidenz, dass die Fehlerfälle aus den ACs geprüft wurden.",
-      "expected_output": "Eine FAIL- oder BLOCKIERT-Entscheidung, welche die fehlende fachliche Evidenz klar nennt und trotzdem eine technische Übergabe strukturiert.",
+      "expected_output": "Eine FAIL- oder Nicht-prüfbar-Entscheidung, welche die fehlende fachliche Evidenz klar nennt, ohne daraus eine Datei oder externe Änderung abzuleiten.",
       "assertions": [
         {
           "name": "evidence_gap_is_not_passed",
