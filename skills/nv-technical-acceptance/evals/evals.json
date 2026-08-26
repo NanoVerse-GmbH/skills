@@ -3,14 +3,20 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "Führe die technische Abnahme für SCRUM-201 aus. Eine fachliche PASS-Übergabe liegt vor. Lint, Typecheck, Tests und Build sind grün; die Änderung betrifft nur eine UI-Ansicht ohne Persistenz, externe Integration oder KI-Verhalten.",
-      "expected_output": "Eine technische PASS-Entscheidung mit konkreten Nachweisen sowie begründet nicht anwendbaren Kriterien für Datenzugriff, Integrationen und KI.",
+      "prompt": "Führe die technische Abnahme für SCRUM-201 aus. Eine fachliche PASS-Übergabe liegt vor. Lint, Typecheck, Tests und Build sind laut Prompt grün; die Änderung betrifft nur eine UI-Ansicht ohne Persistenz, externe Integration oder KI-Verhalten. Es liegen keine Befehlsausgaben, kein Diff und keine Testprotokolle vor.",
+      "expected_output": "Eine BLOCKIERT-Entscheidung, weil reine Prompt-Angaben keine technische Evidenz sind, plus begründete nicht anwendbare Kriterien für Datenzugriff, Integrationen und KI.",
       "assertions": [
         {
           "name": "functional_handover_is_context_only",
           "description": "Die fachliche Übergabe wird nicht erneut fachlich bewertet.",
           "type": "contains",
           "value": "nur Kontext, nicht erneut bewertet"
+        },
+        {
+          "name": "prompt_claims_are_not_evidence",
+          "description": "Die Antwort behandelt behauptete grüne Qualitätsgates ohne Artefakte nicht als PASS-Evidenz.",
+          "type": "llm_judge",
+          "criteria": "The response issues BLOCKIERT rather than PASS and explicitly identifies missing concrete evidence for the claimed quality gates."
         }
       ]
     },
@@ -37,6 +43,19 @@
           "description": "Die Bewertung adressiert Timeouts und Verbindungsabbrüche im VPN-Extension-Szenario.",
           "type": "contains",
           "value": "Verbindungsabbrüche"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Prüfe SCRUM-204 technisch. Eine neue Chat-Karte löst nach Nutzerbestätigung eine Schreibaktion aus. Es gibt konkrete Nachweise für lint, typecheck, test und build sowie für die persistierte Aktion. Es fehlt aber ein Nachweis, dass die strukturierte Kartenrepräsentation in Backend, Persistenz und UI dieselbe Source of Truth bleibt und dass doppelte Klicks keine doppelte Aktion erzeugen.",
+      "expected_output": "Eine FAIL- oder BLOCKIERT-Entscheidung mit explizitem Bezug auf G · Chat- und Aktionsverträge, Source of Truth und doppelte Seiteneffekte.",
+      "assertions": [
+        {
+          "name": "chat_contract_gaps_prevent_pass",
+          "description": "Unbelegte Chat-Verträge und fehlende Idempotenz verhindern PASS.",
+          "type": "llm_judge",
+          "criteria": "The response does not issue PASS and identifies the missing canonical structured representation evidence and duplicate-action protection as gaps under criterion G."
         }
       ]
     }
